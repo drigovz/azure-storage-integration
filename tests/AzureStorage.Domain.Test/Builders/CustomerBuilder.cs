@@ -17,7 +17,7 @@ namespace AzureStorage.Domain.Test.Builders
         private static byte[] file = faker.Random.Bytes(10);
         private static string fileName = faker.Random.String();
 
-        private Document document = new Document(DocumentType.ProofAddress, imageUrl, file, fileName);
+        private CustomerDocument document = new CustomerDocument(DocumentType.ProofAddress, imageUrl, file, fileName);
 
         public static CustomerBuilder New()
         {
