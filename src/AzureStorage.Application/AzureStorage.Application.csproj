@@ -5,7 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="10.3.3" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\AzureStorage.Domain\AzureStorage.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Core\CustomerDocuments\Commands\" />
+    <Folder Include="Core\CustomerDocuments\Handlers\" />
+    <Folder Include="Core\CustomerDocuments\Queries\" />
+    <Folder Include="Core\CustomerDocuments\Validators\" />
+    <Folder Include="Core\Customers\Handlers\" />
   </ItemGroup>
 
 </Project>
