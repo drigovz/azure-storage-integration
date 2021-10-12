@@ -1,5 +1,4 @@
 ﻿using AzureStorage.Domain.Entities;
-using AzureStorage.Domain.Entities.Enums;
 using Bogus;
 
 namespace AzureStorage.Domain.Test.Builders
@@ -13,11 +12,11 @@ namespace AzureStorage.Domain.Test.Builders
         private string Email = faker.Internet.Email();
         private string Identity = "30700696067";
 
-        private static string imageUrl = faker.Image.LoremPixelUrl();
-        private static byte[] file = faker.Random.Bytes(10);
-        private static string fileName = faker.Random.String();
+        //private static string imageUrl = faker.Image.LoremPixelUrl();
+        //private static byte[] file = faker.Random.Bytes(10);
+        //private static string fileName = faker.Random.String();
 
-        private CustomerDocument document = new CustomerDocument(DocumentType.ProofAddress, imageUrl, file, fileName);
+        //private CustomerDocument document = new CustomerDocument(DocumentType.ProofAddress, imageUrl, file, fileName);
 
         public static CustomerBuilder New()
         {
@@ -48,9 +47,7 @@ namespace AzureStorage.Domain.Test.Builders
             return this;
         }
 
-        public Customer Build()
-        {
-            return new Customer(FirstName, LastName, Email, Identity, document);
-        }
+        public Customer Build() =>
+            new Customer(FirstName, LastName, Email, Identity);
     }
 }

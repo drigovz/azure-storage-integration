@@ -1,4 +1,6 @@
 ﻿using AzureStorage.Domain.Validations;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AzureStorage.Domain.Entities
 {
@@ -8,27 +10,32 @@ namespace AzureStorage.Domain.Entities
         public string LastName { get; private set; }
         public string Email { get; private set; }
         public string Identity { get; private set; }
-        public CustomerDocument Documents { get; private set; }
+        public IList<CustomerDocument> Documents { get; set; }
 
-        public Customer(int id, string firstName, string lastName, string email, string identity, CustomerDocument documents)
+        public Customer(int id, string firstName, string lastName, string email, string identity)
         {
             Id = id;
 
             EntityValidation(this, new CustomerValidator());
         }
 
-        public Customer(string firstName, string lastName, string email, string identity, CustomerDocument documents)
+        public Customer(string firstName, string lastName, string email, string identity)
         {
             FirstName = firstName;
             LastName = lastName;
             Email = email;
             Identity = identity;
-            Documents = documents;
 
             EntityValidation(this, new CustomerValidator());
         }
 
-        public Customer UpdateCustomer(string firstName, string lastName, string email, string identity, CustomerDocument documents)
+        public List<CustomerDocument> AddDocuments(CustomerDocument document)
+        {
+            Documents.Add(document);
+            return Documents.ToList();
+        }
+
+        public Customer UpdateCustomer(string firstName, string lastName, string email, string identity)
         {
             EntityValidation(this, new CustomerValidator());
 

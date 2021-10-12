@@ -3,6 +3,6 @@ using AzureStorage.Domain.Interfaces.Repository;
 
 namespace AzureStorage.Domain.Interfaces
 {
-    public interface ICustomerDocument : IBaseRepository<CustomerDocument, int>
+    public interface ICustomerDocumentRepository : IBaseRepository<CustomerDocument, int>
     { }
 }

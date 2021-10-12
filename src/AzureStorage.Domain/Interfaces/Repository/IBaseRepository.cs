@@ -11,5 +11,6 @@ namespace AzureStorage.Domain.Interfaces.Repository
         Task<E> AddAsync(E entity);
         Task<E> UpdateAsync(E entity);
         Task<bool> RemoveAsync(T id);
+        Task Rollback();
     }
 }

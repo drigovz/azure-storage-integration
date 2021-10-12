@@ -9,6 +9,8 @@ namespace AzureStorage.Domain.Entities
         public string Url { get; private set; }
         public byte[] File { get; private set; }
         public string FileName { get; private set; }
+        public Customer Customer { get; set; }
+        public int CustomerId { get; set; }
 
         public CustomerDocument(int id, DocumentType documentType, string url, byte[] file, string fileName)
         {
