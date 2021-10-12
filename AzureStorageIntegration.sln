@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FC030CD1-49CF-4AB3-88A3-A83DFF1CB12C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A90A9275-FC08-4C08-9DD4-49AF77239EE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureStorage.Domain", "src\AzureStorage.Domain\AzureStorage.Domain.csproj", "{A91EFC78-4D17-462C-B0C7-033AEC4A2249}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureStorage.Application", "src\AzureStorage.Application\AzureStorage.Application.csproj", "{F438CF30-29AA-4359-880B-C1625D01FE03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureStorage.Infra.Data", "src\AzureStorage.Infra.Data\AzureStorage.Infra.Data.csproj", "{9D052942-14B1-4527-8408-488AC1FBC60F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureStorage.Infra.IoC", "src\AzureStorage.Infra.IoC\AzureStorage.Infra.IoC.csproj", "{369FBAD6-0161-41DB-B372-0748C47DF447}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureStorage.Api", "src\AzureStorage.Api\AzureStorage.Api.csproj", "{9A915A36-FD6F-49EF-AFFF-E8DBA5C1313D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureStorage.Domain.Test", "tests\AzureStorage.Domain.Test\AzureStorage.Domain.Test.csproj", "{41D4E8D0-03DE-443F-B253-8E96F2174E5C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A91EFC78-4D17-462C-B0C7-033AEC4A2249}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A91EFC78-4D17-462C-B0C7-033AEC4A2249}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A91EFC78-4D17-462C-B0C7-033AEC4A2249}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A91EFC78-4D17-462C-B0C7-033AEC4A2249}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F438CF30-29AA-4359-880B-C1625D01FE03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F438CF30-29AA-4359-880B-C1625D01FE03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F438CF30-29AA-4359-880B-C1625D01FE03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F438CF30-29AA-4359-880B-C1625D01FE03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D052942-14B1-4527-8408-488AC1FBC60F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D052942-14B1-4527-8408-488AC1FBC60F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D052942-14B1-4527-8408-488AC1FBC60F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D052942-14B1-4527-8408-488AC1FBC60F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{369FBAD6-0161-41DB-B372-0748C47DF447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{369FBAD6-0161-41DB-B372-0748C47DF447}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{369FBAD6-0161-41DB-B372-0748C47DF447}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{369FBAD6-0161-41DB-B372-0748C47DF447}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A915A36-FD6F-49EF-AFFF-E8DBA5C1313D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A915A36-FD6F-49EF-AFFF-E8DBA5C1313D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A915A36-FD6F-49EF-AFFF-E8DBA5C1313D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A915A36-FD6F-49EF-AFFF-E8DBA5C1313D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41D4E8D0-03DE-443F-B253-8E96F2174E5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41D4E8D0-03DE-443F-B253-8E96F2174E5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41D4E8D0-03DE-443F-B253-8E96F2174E5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41D4E8D0-03DE-443F-B253-8E96F2174E5C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A91EFC78-4D17-462C-B0C7-033AEC4A2249} = {FC030CD1-49CF-4AB3-88A3-A83DFF1CB12C}
+		{F438CF30-29AA-4359-880B-C1625D01FE03} = {FC030CD1-49CF-4AB3-88A3-A83DFF1CB12C}
+		{9D052942-14B1-4527-8408-488AC1FBC60F} = {FC030CD1-49CF-4AB3-88A3-A83DFF1CB12C}
+		{369FBAD6-0161-41DB-B372-0748C47DF447} = {FC030CD1-49CF-4AB3-88A3-A83DFF1CB12C}
+		{9A915A36-FD6F-49EF-AFFF-E8DBA5C1313D} = {FC030CD1-49CF-4AB3-88A3-A83DFF1CB12C}
+		{41D4E8D0-03DE-443F-B253-8E96F2174E5C} = {A90A9275-FC08-4C08-9DD4-49AF77239EE1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {481E2073-3FC0-4632-97FB-38C66E5B054F}
+	EndGlobalSection
+EndGlobal
