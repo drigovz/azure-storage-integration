@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AzureStorage.Application.Core.Customers.Handlers.Queries
 {
-    public class GetCustomersQueryHandler : IRequestHandler<GetCustomersQuery, ResponseCommand>
+    public class GetCustomersQueryHandler : IRequestHandler<GetCustomersQuery, BaseResponse>
     {
         private readonly ICustomerRepository _repository;
         private readonly NotificationContext _notification;
@@ -18,7 +18,7 @@ namespace AzureStorage.Application.Core.Customers.Handlers.Queries
             _notification = notification;
         }
 
-        public async Task<ResponseCommand> Handle(GetCustomersQuery request, CancellationToken cancellationToken) =>
-            new ResponseCommand { Result = await _repository.GetAsync(), };
+        public async Task<BaseResponse> Handle(GetCustomersQuery request, CancellationToken cancellationToken) =>
+            new BaseResponse { Result = await _repository.GetAsync(), };
     }
 }

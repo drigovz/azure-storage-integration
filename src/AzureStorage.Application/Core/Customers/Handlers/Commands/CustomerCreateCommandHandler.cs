@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AzureStorage.Application.Core.Customers.Handlers.Commands
 {
-    public class CustomerCreateCommandHandler : IRequestHandler<CustomerCreateCommand, ResponseCommand>
+    public class CustomerCreateCommandHandler : IRequestHandler<CustomerCreateCommand, BaseResponse>
     {
         private readonly ICustomerRepository _repository;
         private readonly NotificationContext _notification;
@@ -19,14 +19,14 @@ namespace AzureStorage.Application.Core.Customers.Handlers.Commands
             _notification = notification;
         }
 
-        public async Task<ResponseCommand> Handle(CustomerCreateCommand request, CancellationToken cancellationToken)
+        public async Task<BaseResponse> Handle(CustomerCreateCommand request, CancellationToken cancellationToken)
         {
             var client = new Customer(request.FirstName, request.LastName, request.Email, request.Identity);
             if (!client.Valid)
             {
                 _notification.AddNotifications(client.ValidationResult);
 
-                return new ResponseCommand
+                return new BaseResponse
                 {
                     Notifications = _notification.Notifications,
                 };
@@ -37,12 +37,12 @@ namespace AzureStorage.Application.Core.Customers.Handlers.Commands
             {
                 _notification.AddNotification("Error", "Error When try to add new client!");
 
-                return new ResponseCommand { Notifications = _notification.Notifications, };
+                return new BaseResponse { Notifications = _notification.Notifications, };
             }
 
             await _repository.Rollback();
 
-            return new ResponseCommand { Result = result, };
+            return new BaseResponse { Result = result, };
         }
     }
 }

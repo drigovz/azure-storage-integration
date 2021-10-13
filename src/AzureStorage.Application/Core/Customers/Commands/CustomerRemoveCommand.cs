@@ -2,7 +2,7 @@
 
 namespace AzureStorage.Application.Core.Customers.Commands
 {
-    public class CustomerRemoveCommand : IRequest<ResponseCommand>
+    public class CustomerRemoveCommand : IRequest<BaseResponse>
     {
         public int Id { get; set; }
     }

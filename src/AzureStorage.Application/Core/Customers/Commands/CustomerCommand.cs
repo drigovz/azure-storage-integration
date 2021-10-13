@@ -2,7 +2,7 @@
 
 namespace AzureStorage.Application.Core.Customers.Commands
 {
-    public class CustomerCommand : IRequest<ResponseCommand>
+    public class CustomerCommand : IRequest<BaseResponse>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

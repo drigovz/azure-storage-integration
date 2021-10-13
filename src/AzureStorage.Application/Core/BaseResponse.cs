@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AzureStorage.Application.Core
 {
-    public class ResponseCommand
+    public class BaseResponse
     {
         public dynamic Result { get; set; } = default;
 

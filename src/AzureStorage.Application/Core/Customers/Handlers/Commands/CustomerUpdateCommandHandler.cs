@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AzureStorage.Application.Core.Customers.Handlers.Commands
 {
-    public class CustomerUpdateCommandHandler : IRequestHandler<CustomerUpdateCommand, ResponseCommand>
+    public class CustomerUpdateCommandHandler : IRequestHandler<CustomerUpdateCommand, BaseResponse>
     {
         private readonly ICustomerRepository _repository;
         private readonly NotificationContext _notification;
@@ -18,11 +18,11 @@ namespace AzureStorage.Application.Core.Customers.Handlers.Commands
             _notification = notification;
         }
 
-        public async Task<ResponseCommand> Handle(CustomerUpdateCommand request, CancellationToken cancellationToken)
+        public async Task<BaseResponse> Handle(CustomerUpdateCommand request, CancellationToken cancellationToken)
         {
             var client = await _repository.GetByIdAsync(request.Id);
             if (client == null)
-                return new ResponseCommand
+                return new BaseResponse
                 {
                     Notifications = _notification.AddNotification("Error", $"Client with id {request.Id} not found!"),
                 };
@@ -30,7 +30,7 @@ namespace AzureStorage.Application.Core.Customers.Handlers.Commands
             client.UpdateCustomer(request.FirstName, request.LastName, request.Email, request.Identity);
             await _repository.UpdateAsync(client);
 
-            return new ResponseCommand
+            return new BaseResponse
             {
                 Result = client,
                 Notifications = _notification.AddNotification("Success", $"Client with id {request.Id} update succesfull!"),
