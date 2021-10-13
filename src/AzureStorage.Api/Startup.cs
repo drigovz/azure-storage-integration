@@ -1,4 +1,6 @@
-using AzureStorage.Infra.Data.DependencyInjection;
+using AzureStorage.Application.Notifications;
+using AzureStorage.Infra.IoC.DependencyInjection;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,7 +32,11 @@ namespace AzureStorage.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRepositories(Configuration);
-            services.AddControllers();
+            services.AddServices();
+            services.AddScoped<NotificationContext>();
+            services.AddControllers()
+                    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<NotificationContext>());
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AzureStorage.Api", Version = "v1" });
@@ -39,7 +45,7 @@ namespace AzureStorage.Api
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (env.IsDevelopment() || env.EnvironmentName == "Local")
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();

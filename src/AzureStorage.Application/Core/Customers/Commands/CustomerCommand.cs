@@ -1,9 +1,8 @@
-﻿using AzureStorage.Domain.Entities;
-using MediatR;
+﻿using MediatR;
 
 namespace AzureStorage.Application.Core.Customers.Commands
 {
-    public class CustomerCommand : IRequest<Customer>
+    public class CustomerCommand : IRequest<ResponseCommand>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

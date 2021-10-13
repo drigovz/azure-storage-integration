@@ -15,12 +15,15 @@ namespace AzureStorage.Domain.Validations
 
         public static IRuleBuilderOptions<T, string> Identity<T>(this IRuleBuilder<T, string> ruleBuilder) =>
             ruleBuilder.NotNull()
+                       .NotEmpty()
                        .WithMessage("Please enter Identity document")
                        .Must(IsValidCpf)
                        .WithMessage("Enter valid Identity document");
 
         private static bool IsValidCpf(string cpf)
         {
+            if (string.IsNullOrEmpty(cpf)) return false;
+
             int[] multiplierOne = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 },
                   multiplierTwo = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
             string haveCpf, digit;

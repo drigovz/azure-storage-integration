@@ -18,9 +18,17 @@ namespace AzureStorage.Infra.Data.Repository
             _context = context;
         }
 
+        /// <summary>
+        /// Save changes on database
+        /// </summary>
+        /// <returns></returns>
         protected internal async Task Commit() =>
             await _context.SaveChangesAsync();
 
+        /// <summary>
+        /// Discard all changes on this transaction
+        /// </summary>
+        /// <returns></returns>
         public async Task Rollback() =>
             await _context.Database
                   .BeginTransaction(IsolationLevel.ReadCommitted)
@@ -52,7 +60,6 @@ namespace AzureStorage.Infra.Data.Repository
                 entity.CreatedAt = DateTime.UtcNow;
 
                 _context.Set<E>().Add(entity);
-                await Commit();
             }
             catch (Exception ex)
             {
@@ -60,6 +67,7 @@ namespace AzureStorage.Infra.Data.Repository
                 throw ex.InnerException;
             }
 
+            await Commit();
             return entity;
         }
 
@@ -74,14 +82,14 @@ namespace AzureStorage.Infra.Data.Repository
                 entity.CreatedAt = result.CreatedAt;
 
                 _context.Entry(result).CurrentValues.SetValues(entity);
-                await Commit();
             }
-            catch (DbUpdateException ex)
+            catch (Exception ex)
             {
                 await Rollback();
                 throw ex.InnerException;
             }
 
+            await Commit();
             return entity;
         }
 
@@ -93,14 +101,15 @@ namespace AzureStorage.Infra.Data.Repository
                 if (result == null) return false;
 
                 _context.Set<E>().Remove(result);
-                await Commit();
-                return true;
             }
-            catch (DbUpdateException ex)
+            catch (Exception ex)
             {
                 await Rollback();
                 throw ex.InnerException;
             }
+
+            await Commit();
+            return true;
         }
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AzureStorage.Infra.Data.DependencyInjection
+namespace AzureStorage.Infra.IoC.DependencyInjection
 {
     public static class ConfigureRepository
     {
