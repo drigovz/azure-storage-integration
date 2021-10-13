@@ -24,8 +24,8 @@ namespace AzureStorage.Api.Controllers
             Ok(await _mediator.Send(command));
 
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> Get([FromQuery] GetCustomerByIdQuery query) =>
-            Ok(await _mediator.Send(query));
+        public async Task<IActionResult> Get([BindRequired] int id) =>
+            Ok(await _mediator.Send(new GetCustomerByIdQuery { Id = id }));
 
         [HttpGet]
         public async Task<IActionResult> GetAll() =>
@@ -36,7 +36,7 @@ namespace AzureStorage.Api.Controllers
             Ok(await _mediator.Send(command));
 
         [HttpDelete("{id:int}")]
-        public async Task<IActionResult> Delete([FromQuery] CustomerRemoveCommand query) =>
-            Ok(await _mediator.Send(query));
+        public async Task<IActionResult> Delete([BindRequired] int id) =>
+            Ok(await _mediator.Send(new CustomerRemoveCommand { Id = id }));
     }
 }

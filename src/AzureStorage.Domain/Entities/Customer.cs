@@ -37,6 +37,11 @@ namespace AzureStorage.Domain.Entities
 
         public Customer UpdateCustomer(string firstName, string lastName, string email, string identity)
         {
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            Identity = identity;
+
             EntityValidation(this, new CustomerValidator());
 
             return this;
