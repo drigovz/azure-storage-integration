@@ -24,7 +24,7 @@ namespace AzureStorage.Application.Core.Customers.Handlers.Commands
             if (client == null)
                 return new BaseResponse
                 {
-                    Notifications = _notification.AddNotification("Error", $"Client with id {request.Id} not found!"),
+                    Notifications = _notification.AddNotification("Error", $"Customer with id {request.Id} not found!"),
                 };
 
             client.UpdateCustomer(request.FirstName, request.LastName, request.Email, request.Identity);
@@ -33,7 +33,7 @@ namespace AzureStorage.Application.Core.Customers.Handlers.Commands
             return new BaseResponse
             {
                 Result = client,
-                Notifications = _notification.AddNotification("Success", $"Client with id {request.Id} update succesfull!"),
+                Notifications = _notification.AddNotification("Success", $"Customer with id {request.Id} update succesfull!"),
             };
         }
     }

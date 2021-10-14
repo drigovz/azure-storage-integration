@@ -1,6 +1,7 @@
 using AzureStorage.Application.Notifications;
 using AzureStorage.Infra.IoC.DependencyInjection;
 using FluentValidation.AspNetCore;
+using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -41,6 +42,7 @@ namespace AzureStorage.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AzureStorage.Api", Version = "v1" });
             });
+            services.AddFluentValidationRulesToSwagger();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

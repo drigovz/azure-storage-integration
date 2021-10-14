@@ -12,27 +12,33 @@ namespace AzureStorage.Domain.Entities
         public Customer Customer { get; set; }
         public int CustomerId { get; set; }
 
-        public CustomerDocument(int id, DocumentType documentType, string url, byte[] file, string fileName)
+        public CustomerDocument(int id, DocumentType documentType, string url, byte[] file, string fileName, int customerId)
         {
             Id = id;
 
             EntityValidation(this, new CustomerDocumentValidator());
         }
 
-        public CustomerDocument(DocumentType documentType, string url, byte[] file, string fileName)
+        public CustomerDocument(DocumentType documentType, string url, byte[] file, string fileName, int customerId)
         {
             DocumentType = documentType;
             Url = url;
             File = file;
             FileName = fileName;
+            CustomerId = customerId;
 
             EntityValidation(this, new CustomerDocumentValidator());
         }
 
-        public CustomerDocument UpdateDocument(DocumentType documentType, string url, byte[] file, string fileName)
+        public CustomerDocument UpdateDocument(DocumentType documentType, string url, byte[] file, string fileName, int customerId)
         {
-            EntityValidation(this, new CustomerDocumentValidator());
+            DocumentType = documentType;
+            Url = url;
+            File = file;
+            FileName = fileName;
+            CustomerId = customerId;
 
+            EntityValidation(this, new CustomerDocumentValidator());
             return this;
         }
     }

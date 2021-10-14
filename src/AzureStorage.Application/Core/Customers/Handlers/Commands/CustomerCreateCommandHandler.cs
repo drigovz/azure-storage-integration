@@ -35,12 +35,10 @@ namespace AzureStorage.Application.Core.Customers.Handlers.Commands
             var result = await _repository.AddAsync(client);
             if (result == null)
             {
-                _notification.AddNotification("Error", "Error When try to add new client!");
+                _notification.AddNotification("Error", "Error When try to add new customer!");
 
                 return new BaseResponse { Notifications = _notification.Notifications, };
             }
-
-            await _repository.Rollback();
 
             return new BaseResponse { Result = result, };
         }
