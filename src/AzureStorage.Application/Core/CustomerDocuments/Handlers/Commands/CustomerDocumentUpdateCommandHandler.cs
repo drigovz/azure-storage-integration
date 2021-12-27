@@ -20,20 +20,20 @@ namespace AzureStorage.Application.Core.CustomerDocuments.Handlers.Commands
 
         public async Task<BaseResponse> Handle(CustomerDocumentUpdateCommand request, CancellationToken cancellationToken)
         {
-            var document = await _repository.GetByIdAsync(request.Id);
-            if (document == null)
-                return new BaseResponse
-                {
-                    Notifications = _notification.AddNotification("Error", $"Document with id {request.Id} not found!"),
-                };
+            //var document = await _repository.GetByIdAsync(request.Id);
+            //if (document == null)
+            //    return new BaseResponse
+            //    {
+            //        Notifications = _notification.AddNotification("Error", $"Document with id {request.Id} not found!"),
+            //    };
 
-            document.UpdateDocument(request.DocumentType, request.Url, request.File, request.FileName, request.CustomerId);
-            await _repository.UpdateAsync(document);
+            //document.UpdateDocument(request.DocumentType, request.Url, request.File, request.FileName, request.CustomerId);
+            //await _repository.UpdateAsync(document);
 
             return new BaseResponse
             {
-                Result = document,
-                Notifications = _notification.AddNotification("Success", $"Document with id {request.Id} update succesfull!"),
+                Result = "",
+                //Notifications = _notification.AddNotification("Success", $"Document with id {request.Id} update succesfull!"),
             };
         }
     }

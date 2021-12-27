@@ -12,7 +12,6 @@ namespace AzureStorage.Domain.Validations
                                .WithMessage("Url is required")
                                .Must(x => x.StartsWith("http") || x.StartsWith("https"))
                                .WithMessage("Url format not valid");
-            RuleFor(x => x.File).NotEmpty();
             RuleFor(x => x.FileName).NotEmpty();
         }
     }

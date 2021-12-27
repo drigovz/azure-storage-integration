@@ -31,7 +31,7 @@ namespace AzureStorage.Api.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetAll() =>
-            Ok(await _mediator.Send(new GetCustomersQuery()));
+            Ok(await _mediator.Send(new ListCustomersQuery()));
 
         [HttpPut("{id:int}")]
         public async Task<IActionResult> Update([BindRequired] int id, CustomerUpdateCommand request) =>
@@ -42,7 +42,7 @@ namespace AzureStorage.Api.Controllers
             Ok(await _mediator.Send(new CustomerRemoveCommand { Id = id }));
 
         [HttpPost("document")]
-        public async Task<IActionResult> PostCustomerDocument([FromBody] CustomerDocumentCreateCommand request) =>
+        public async Task<IActionResult> PostCustomerDocument([FromForm] CustomerDocumentCreateCommand request) =>
             Ok(await _mediator.Send(request));
 
         [HttpPut("document/{id:int}")]

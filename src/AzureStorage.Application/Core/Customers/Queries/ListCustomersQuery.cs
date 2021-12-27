@@ -2,6 +2,6 @@
 
 namespace AzureStorage.Application.Core.Customers.Queries
 {
-    public class GetCustomersQuery : IRequest<BaseResponse>
+    public class ListCustomersQuery : IRequest<BaseResponse>
     { }
 }

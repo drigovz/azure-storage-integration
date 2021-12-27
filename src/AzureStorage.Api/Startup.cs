@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
 
 namespace AzureStorage.Api
 {
@@ -33,10 +34,11 @@ namespace AzureStorage.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRepositories(Configuration);
-            services.AddServices();
+            services.AddServices(Configuration);
             services.AddScoped<NotificationContext>();
             services.AddControllers()
-                    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<NotificationContext>());
+                    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<NotificationContext>())
+                    .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 
             services.AddSwaggerGen(c =>
             {

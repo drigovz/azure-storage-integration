@@ -10,11 +10,6 @@ namespace AzureStorage.Infra.Data.EntityConfiguration
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Identity).HasMaxLength(14).IsRequired();
-
-            builder.HasMany(b => b.Documents)
-                   .WithOne(p => p.Customer)
-                   .HasForeignKey(p => p.CustomerId)
-                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
