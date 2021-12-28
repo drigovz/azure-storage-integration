@@ -35,8 +35,11 @@ namespace AzureStorage.Application.Core.CustomerDocuments.Handlers.Commands
 
             var uploadResult = await _service.UploadFileBlob(fileName, request.File, containerName);
             if (uploadResult == null)
+            {
                 _notification.AddNotification("Error", "Error When try to upload files on storage!");
-
+                return new BaseResponse { Notifications = _notification.Notifications, };
+            }
+            
             #region [+] Get Customer
             var customer = _mediator.Send(new GetCustomerByIdQuery { Id = request.CustomerId })?.Result?.Result;
             if (customer == null)
@@ -50,18 +53,13 @@ namespace AzureStorage.Application.Core.CustomerDocuments.Handlers.Commands
             if (!document.Valid)
             {
                 _notification.AddNotifications(document.ValidationResult);
-
-                return new BaseResponse
-                {
-                    Notifications = _notification.Notifications,
-                };
+                return new BaseResponse { Notifications = _notification.Notifications, };
             }
 
             var result = await _repository.AddAsync(document);
             if (result == null)
             {
                 _notification.AddNotification("Error", "Error When try to add new document!");
-
                 return new BaseResponse { Notifications = _notification.Notifications, };
             }
 
