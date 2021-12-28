@@ -3,7 +3,6 @@ using Azure.Storage.Blobs.Models;
 using AzureStorage.Domain.Entities;
 using AzureStorage.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -102,15 +101,15 @@ namespace AzureStorage.Application.Services
             return null;
         }
 
-        public async Task<string> CreateBlobContainer(string genericName)
+        public async Task<string> CreateBlobContainer(string innerContainer)
         {
             var blobContainer = new BlobServiceClient("UseDevelopmentStorage=true;");
             string containerName = string.Empty;
 
-            var container = blobContainer.GetBlobContainerClient(genericName);
+            var container = blobContainer.GetBlobContainerClient(innerContainer);
             if (!container.Exists())
             {
-                BlobContainerClient blobContainerClient = await blobContainer.CreateBlobContainerAsync(genericName);
+                BlobContainerClient blobContainerClient = await blobContainer.CreateBlobContainerAsync(innerContainer);
                 if (await blobContainerClient.ExistsAsync())
                     containerName = blobContainerClient.Name;
             }

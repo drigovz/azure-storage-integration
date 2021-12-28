@@ -37,8 +37,8 @@ namespace AzureStorage.Api
             services.AddServices(Configuration);
             services.AddScoped<NotificationContext>();
             services.AddControllers()
-                    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<NotificationContext>())
-                    .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+                    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<NotificationContext>());
+                    //.AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 
             services.AddSwaggerGen(c =>
             {

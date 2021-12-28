@@ -29,8 +29,9 @@ namespace AzureStorage.Application.Core.CustomerDocuments.Handlers.Commands
 
         public async Task<BaseResponse> Handle(CustomerDocumentCreateCommand request, CancellationToken cancellationToken)
         {
-            string containerName = await _service.CreateBlobContainer($"customer-{request.CustomerId}"),
-                   fileName = Guid.NewGuid().ToString() + Path.GetExtension(request.File.FileName);
+            string containerName = await _service.CreateBlobContainer($"customers"),
+                   file = $"{Guid.NewGuid().ToString() + Path.GetExtension(request.File.FileName)}",
+                   fileName = $"customer-{request.CustomerId}/{file}";
 
             var uploadResult = await _service.UploadFileBlob(fileName, request.File, containerName);
             if (uploadResult == null)
@@ -45,11 +46,7 @@ namespace AzureStorage.Application.Core.CustomerDocuments.Handlers.Commands
             }
             #endregion
 
-            var length = request.File.Length;
-            var contentType = request.File.ContentType;
-            //var file = request.File.ContentType; //byte[]
-
-            var document = new CustomerDocument(request.DocumentType, uploadResult.Url, uploadResult.Name, customer);
+            var document = new CustomerDocument(request.DocumentType, uploadResult.Url, file, request?.File?.Length, request?.File?.ContentType, customer);
             if (!document.Valid)
             {
                 _notification.AddNotifications(document.ValidationResult);

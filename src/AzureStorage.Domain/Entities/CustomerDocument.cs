@@ -9,31 +9,37 @@ namespace AzureStorage.Domain.Entities
         public DocumentType DocumentType { get; private set; }
         public string Url { get; private set; }
         public string FileName { get; private set; }
+        public long? Size { get; private set; }
+        public string ContentType { get; private set; }
         [JsonIgnore]
         public Customer Customer { get; private set; }
 
-        public CustomerDocument(int id, DocumentType documentType, string url, string fileName)
+        public CustomerDocument(int id, DocumentType documentType, string url, string fileName, long? size, string contentType)
         {
             Id = id;
 
             EntityValidation(this, new CustomerDocumentValidator());
         }
 
-        public CustomerDocument(DocumentType documentType, string url, string fileName)
+        public CustomerDocument(DocumentType documentType, string url, string fileName, long? size, string contentType)
         {
             DocumentType = documentType;
             Url = url;
             FileName = fileName;
+            Size = size;
+            ContentType = contentType;
 
             EntityValidation(this, new CustomerDocumentValidator());
         }
 
-        public CustomerDocument(DocumentType documentType, string url, string fileName, Customer customer)
+        public CustomerDocument(DocumentType documentType, string url, string fileName, long? size, string contentType, Customer customer)
         {
             DocumentType = documentType;
             Url = url;
             FileName = fileName;
             Customer = customer;
+            Size = size;
+            ContentType = contentType;
 
             EntityValidation(this, new CustomerDocumentValidator());
         }
