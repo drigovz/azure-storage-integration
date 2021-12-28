@@ -33,17 +33,20 @@ namespace AzureStorage.Application.Core.CustomerDocuments.Handlers.Commands
                    fileName = Guid.NewGuid().ToString() + Path.GetExtension(request.File.FileName);
 
             var uploadResult = await _service.UploadFileBlob(fileName, request.File, containerName);
-            if(uploadResult == null)
+            if (uploadResult == null)
                 _notification.AddNotification("Error", "Error When try to upload files on storage!");
 
             #region [+] Get Customer
             var customer = _mediator.Send(new GetCustomerByIdQuery { Id = request.CustomerId })?.Result?.Result;
-            if (uploadResult == null)
+            if (customer == null)
+            {
                 _notification.AddNotification("Error", "Error When try to get customer!");
+                return new BaseResponse { Notifications = _notification.Notifications, };
+            }
             #endregion
 
-            var length = request.File.Length; 
-            var contentType = request.File.ContentType; 
+            var length = request.File.Length;
+            var contentType = request.File.ContentType;
             //var file = request.File.ContentType; //byte[]
 
             var document = new CustomerDocument(request.DocumentType, uploadResult.Url, uploadResult.Name, customer);

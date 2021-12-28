@@ -104,14 +104,20 @@ namespace AzureStorage.Application.Services
 
         public async Task<string> CreateBlobContainer(string genericName)
         {
-            var blobServiceClient = new BlobServiceClient("UseDevelopmentStorage=true;");
-            string containerName = $"{genericName}-{Guid.NewGuid()}";
-            BlobContainerClient container = await blobServiceClient.CreateBlobContainerAsync(containerName);
+            var blobContainer = new BlobServiceClient("UseDevelopmentStorage=true;");
+            string containerName = string.Empty;
 
-            if (await container.ExistsAsync())
-                return container.Name;
+            var container = blobContainer.GetBlobContainerClient(genericName);
+            if (!container.Exists())
+            {
+                BlobContainerClient blobContainerClient = await blobContainer.CreateBlobContainerAsync(genericName);
+                if (await blobContainerClient.ExistsAsync())
+                    containerName = blobContainerClient.Name;
+            }
+            else
+                containerName = container?.Name;
 
-            return string.Empty;
+            return containerName;
         }
     }
 }
